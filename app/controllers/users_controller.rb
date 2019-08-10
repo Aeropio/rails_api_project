@@ -17,4 +17,13 @@ class UsersController < ApplicationController
     request.headers['Authorization'].clear
     render json: { sucess: 'User Signed Out' }
   end
+
+  def all_users
+    users = User.all
+    if users.present?
+      render json: users
+    else
+      render json: { failure: 'No User Found' }
+    end
+  end
 end
